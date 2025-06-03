@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios - Animaciones</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .servicio {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      height: 300px;
+      transition: height 0.4s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    .servicio img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .servicio h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .descripcion {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .servicio:hover {
+      height: 380px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .servicio:hover .descripcion {
+      opacity: 1;
+      max-height: 100px;
+    }
+
+    /* Fade & Scale */
+    .fade-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Flip 3D */
+    .card-flip {
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card-flip:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      padding: 1rem;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <h1>Servicios Profesionales</h1>
+  <audio id="hover-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+
+  <section class="servicios-grid">
+    <!-- Tarjeta clásica con sonido -->
+    <div class="servicio fade-scale sonido-hover">
+      <img src="https://via.placeholder.com/300x150" />
+      <h3>Video Corporativo</h3>
+      <p class="descripcion">Videos para empresas con narrativa visual poderosa.</p>
+    </div>
+
+    <!-- Tarjeta con efecto Flip -->
+    <div class="card-flip fade-scale">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="https://via.placeholder.com/300x150" />
+          <h3>Documentales</h3>
+        </div>
+        <div class="card-back">
+          <p>Historias reales contadas con alma, cámara y acción.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta clásica -->
+    <div class="servicio fade-scale">
+      <img src="https://via.placeholder.com/300x150" />
+      <h3>Eventos en Vivo</h3>
+      <p class="descripcion">Cobertura audiovisual de eventos sociales, empresariales y más.</p>
+    </div>
+  </section>
+
+  <script>
+    // Fade + Scale al hacer scroll
+    const targets = document.querySelectorAll('.fade-scale');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    targets.forEach(el => observer.observe(el));
+
+    // Sonido al hacer hover
+    const sonido = document.getElementById('hover-sound');
+    document.querySelectorAll('.sonido-hover').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        sonido.currentTime = 0;
+        sonido.play();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -114,6 +114,42 @@ header nav ul li a {
   height: 100%; /* Asegúra de que la imagen ocupe el 100% de la altura del contenedor */
 }
 
+.card-flip {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card-flip:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  background-image:url(intimate-closeup-video-camera-moody-atmospheric-film-set_1268139-9144.jpg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+
 p{
   
   color: rgb(235, 235, 235);
@@ -145,117 +181,6 @@ h1{
   text-align: center;
 }
 
-/*parte de la card*/
-.container{
-
-    width: 100%;
-    max-width: 1200px;
-    height: 430px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-    
-}
-
-.container .card{
-    width: 330px;
-    height: 330px;
-    border-radius: 8px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    margin: 20px;
-    text-align: center;
-    transition: all 0.25s;
-    background-color: beige;
-}
-
-.container .card:hover{
-    transform: translateY(-15px);
-    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-}
-
-.container .card img{
-  object-fit: cover;
-  width: 100%;
-    /*width: 430px*/;
-    height: 230px;
-}
-
-
-.container .card h4{
-  text-align: center;
-    font-weight: 600;
-}
-
-.container .card p{
-    padding: 0 1rem;
-    font-size: 16px;
-    font-weight: 300;
-    color: #3498db;
-}
-
-.container .card a {
-    font-weight: 500;
-    text-decoration: none;
-    color: #3498db;
-}
-/*finde la parte de la car*/
-
-
-/*parte del formulario*/
-.formulario-contacto {
-  background-color:beige;
-  padding: 40px;
-  margin: 40px auto;
-  width: 90%;
-  max-width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  text-align: center;
-}
-
-.formulario-contacto h2 {
-  margin-bottom: 20px;
-}
-
-.formulario-contacto label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-.formulario-contacto input,
-.formulario-contacto textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-.formulario-contacto textarea {
-  height: 120px;
-  resize: vertical;
-}
-
-.formulario-contacto button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #ff4c60;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.formulario-contacto button:hover {
-  background-color: #e13b4f;
-}
-
-/*fin del formulario*/
 
 
 footer {
